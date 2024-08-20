@@ -1,0 +1,124 @@
+{
+    "reviews": [
+        {
+            "professor": "Dr. Alice Johnson",
+            "subject": "Computer Science",
+            "stars": 4,
+            "review": "Great at explaining complex concepts, but her exams are tough."
+        },
+        {
+            "professor": "Dr. Mark Evans",
+            "subject": "Mathematics",
+            "stars": 5,
+            "review": "Very engaging lectures and always willing to help during office hours."
+        },
+        {
+            "professor": "Dr. Lisa Wong",
+            "subject": "Physics",
+            "stars": 3,
+            "review": "Interesting lectures but sometimes hard to follow."
+        },
+        {
+            "professor": "Dr. Kevin Patel",
+            "subject": "Chemistry",
+            "stars": 4,
+            "review": "He knows his stuff but expects students to be self-driven."
+        },
+        {
+            "professor": "Dr. Susan Brown",
+            "subject": "Biology",
+            "stars": 5,
+            "review": "Passionate about the subject, makes learning fun and interactive."
+        },
+        {
+            "professor": "Dr. Robert Adams",
+            "subject": "History",
+            "stars": 3,
+            "review": "A bit dry at times, but knowledgeable and fair in grading."
+        },
+        {
+            "professor": "Dr. Emily Taylor",
+            "subject": "Economics",
+            "stars": 4,
+            "review": "Clear and concise teaching, but the material is challenging."
+        },
+        {
+            "professor": "Dr. James Green",
+            "subject": "Political Science",
+            "stars": 5,
+            "review": "Engaging lectures and open to diverse viewpoints."
+        },
+        {
+            "professor": "Dr. Nancy White",
+            "subject": "Psychology",
+            "stars": 4,
+            "review": "Really cares about students, though her grading is strict."
+        },
+        {
+            "professor": "Dr. Michael Clark",
+            "subject": "Sociology",
+            "stars": 2,
+            "review": "Lectures can be monotonous, and the assignments are tedious."
+        },
+        {
+            "professor": "Dr. Karen Scott",
+            "subject": "Philosophy",
+            "stars": 5,
+            "review": "Brilliant and thought-provoking. Makes you think deeply about life."
+        },
+        {
+            "professor": "Dr. Richard Lewis",
+            "subject": "Anthropology",
+            "stars": 3,
+            "review": "Content is interesting, but the exams are very difficult."
+        },
+        {
+            "professor": "Dr. Patricia Martin",
+            "subject": "English Literature",
+            "stars": 4,
+            "review": "Encourages creativity and critical thinking, but readings are heavy."
+        },
+        {
+            "professor": "Dr. William Harris",
+            "subject": "Statistics",
+            "stars": 3,
+            "review": "Explains well, but you need to put in extra effort to succeed."
+        },
+        {
+            "professor": "Dr. Linda King",
+            "subject": "Environmental Science",
+            "stars": 5,
+            "review": "Passionate about the environment and makes the subject come alive."
+        },
+        {
+            "professor": "Dr. George Robinson",
+            "subject": "Art History",
+            "stars": 4,
+            "review": "Very knowledgeable but sometimes gets sidetracked in lectures."
+        },
+        {
+            "professor": "Dr. Jessica Hill",
+            "subject": "Linguistics",
+            "stars": 4,
+            "review": "Really knows her field, but expects a lot from students."
+        },
+        {
+            "professor": "Dr. Daniel Carter",
+            "subject": "Geography",
+            "stars": 2,
+            "review": "Not very engaging, and the material can be dry."
+        },
+        {
+            "professor": "Dr. Amanda Parker",
+            "subject": "Philosophy",
+            "stars": 5,
+            "review": "Inspires deep thinking and is very approachable."
+        },
+        {
+            "professor": "Dr. Charles Thompson",
+            "subject": "Computer Engineering",
+            "stars": 4,
+            "review": "Good balance of theory and practical work, but assignments are tough."
+        }
+    ]
+}
