@@ -14,8 +14,6 @@ git clone 'repositorylink'
 
 ```
 
-Download Miniconda (https://docs.anaconda.com/miniconda/#miniconda-latest-installer-links)
-
 
 Create a .env file in the root directory and add your API keys:
 
@@ -26,17 +24,43 @@ OPENAI_API_KEY=your_openai_api_key
 
 ```
 
-## Install dependencies
+## Using Python
+
+Download Miniconda (https://docs.anaconda.com/miniconda/#miniconda-latest-installer-links)
 
 ```bash
 conda create -n rag python=3.10.4
+```
+```bash
 conda activate rag
+```
+On Windows
+```bash
 .\env\Scripts\activate
+```
+On Linux/macOS
+```bash
+source venv/bin/activate
+```
+
+## Install dependencies
+
+```bash
 pip install python-dotenv
+```
+```bash
 pip install openai
+```
+```bash
 pip install "pinecone-client[grpc]"
+```
+```bash
 pip install pip-chill
+```
+```bash
 pip-chill >requirements.txt
+```
+```bash
 npm install
 ```
 
