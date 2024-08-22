@@ -34,14 +34,6 @@ conda create -n rag python=3.10.4
 ```bash
 conda activate rag
 ```
-On Windows
-```bash
-.\env\Scripts\activate
-```
-On Linux/macOS
-```bash
-source venv/bin/activate
-```
 
 ## Install dependencies
 
@@ -62,6 +54,9 @@ pip-chill >requirements.txt
 ```
 ```bash
 npm install
+```
+```bash
+npm install @pinecone-database/pinecone     
 ```
 
 ## Run the development server:
