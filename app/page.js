@@ -25,7 +25,7 @@ export default function Home() {
                 minHeight: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: '#E3F2FD',
+                backgroundColor: 'grey',
                 padding: 0,
                 margin: 0,
                 overflowX: 'hidden',
@@ -42,9 +42,9 @@ export default function Home() {
             <AppBar
                 position="static"
                 sx={{
-                    backgroundColor: '#5C6BC0',
+                    backgroundColor: '#000000',
                     boxShadow: 'none',
-                    width: '100%',
+                    minwidth: '100vw',
                 }}
             >
                 <Toolbar>
@@ -52,15 +52,20 @@ export default function Home() {
                         RateSmart
                     </Typography>
                     <Link href="/sign-in" passHref>
-                        <Button color="inherit" sx={{ mx: 1 }}>Login</Button>
+                        <Button sx={{
+                            mx: 1,
+                            color: 'white',
+                            '&:hover': { backgroundColor: '#28231D' },
+                            transition: 'background-color 0.3s ease',
+                            borderRadius: '20px',
+                        }}>Login</Button>
                     </Link>
                     <Link href="/sign-up" passHref>
                         <Button
-                            color="inherit"
                             sx={{
                                 mx: 1,
-                                backgroundColor: '#42A5F5',
-                                '&:hover': { backgroundColor: '#1E88E5' },
+                                color: 'white',
+                                '&:hover': { backgroundColor: '#28231D' },
                                 transition: 'background-color 0.3s ease',
                                 borderRadius: '20px',
                                 fontFamily: "'Lato', sans-serif",
@@ -77,23 +82,27 @@ export default function Home() {
                     flexGrow: 1,
                     flexDirection: 'column',
                     display: 'flex',
-                    justifyContent: 'space-between',
                     alignItems: 'center',
                     textAlign: 'center',
-                    py: 8,
-                    px: 4,
                     overflowX: 'hidden',
-                    width: '100%',
+                    width: '100vw',
+                    height: '100vh',
+                    padding: 0,
+                    margin: 0,
                 }}
             >
                 {/* Title Section */}
-                <Box>
+                <Box sx={{
+                    backgroundColor: '#EDCFFC',
+                    width: '100vw',
+                    py: 8,
+                    px: 4,
+                }}>
                     <Typography
                         variant="h3"
                         gutterBottom
                         sx={{
                             fontWeight: 'bold',
-                            color: '#5C6BC0',
                             animation: `fadeIn 2s ease`,
                             fontFamily: "'Lato', sans-serif",
                         }}
@@ -103,7 +112,6 @@ export default function Home() {
                     <Typography
                         variant="h5"
                         sx={{
-                            color: '#9575CD',
                             mb: 4,
                             fontFamily: "'Lato', sans-serif",
                         }}
@@ -114,8 +122,8 @@ export default function Home() {
                         <Button
                             variant="contained"
                             sx={{
-                                backgroundColor: '#9575CD',
-                                '&:hover': { backgroundColor: '#7E57C2' },
+                                backgroundColor: '#000000',
+                                '&:hover': { backgroundColor: '#000055' },
                                 fontSize: '1.2rem',
                                 px: 4,
                                 py: 1,
@@ -127,14 +135,12 @@ export default function Home() {
                         </Button>
                     </Link>
                 </Box>
-
-
-                <Box sx={{ backgroundColor: 'white', my: 6, textAlign: "justify" }}>
+                <Box sx={{ backgroundColor: 'white', textAlign: "center", padding: "50px" }}>
                     <Typography variant="h4" component="h2" align="center" gutterBottom>
                         Features
                     </Typography>
                     <Typography>Start chatting with our assistant by clicking Get Started. Sign in for more features!</Typography>
-                    <Grid container spacing={4}>
+                    <Grid container spacing={4} sx={{ padding: '30px' }}>
                         <Grid item xs={12} md={4}>
                             <Paper sx={style}>
                                 <Typography variant="h5">Real-time answers</Typography>
@@ -173,10 +179,9 @@ export default function Home() {
 
                 </Box>
             </Box>
-
             <Box
                 sx={{
-                    backgroundColor: '#5C6BC0',
+                    backgroundColor: '#000000',
                     color: '#fff',
                     py: 2,
                     textAlign: 'center',
