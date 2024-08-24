@@ -1,6 +1,6 @@
 'use client'
 import { Box, Button, Stack, TextField, AppBar, Toolbar, Typography, Link } from '@mui/material'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export default function Home() {
 
@@ -12,6 +12,8 @@ export default function Home() {
     },
   ])
   const [message, setMessage] = useState('')
+  const [isRecording, setIsRecording] = useState(false)
+  const recognitionRef = useRef(null)
 
   //Handle sending messages
   const sendMessage = async () => {
@@ -50,6 +52,46 @@ export default function Home() {
         return reader.read().then(processText)
       })
     })
+  }
+
+  // Initialize the Speech Recognition API if available
+  if (typeof window !== 'undefined' && !recognitionRef.current) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition()
+      recognitionRef.current.interimResults = true
+      recognitionRef.current.lang = 'en-US'
+      recognitionRef.current.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map(result => result[0].transcript)
+          .join('')
+        console.log('Transcript:', transcript) // Debugging line
+        setMessage(transcript)
+      }
+      recognitionRef.current.onend = () => {
+        setIsRecording(false)
+      }
+      recognitionRef.current.onerror = (event) => {
+        console.error('Speech recognition error:', event.error) // Debugging line
+        setIsRecording(false)
+      }
+    } else {
+      console.error('Speech Recognition API not supported in this browser.')
+    }
+  }
+
+  const startRecording = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start()
+      setIsRecording(true)
+    }
+  }
+
+  const stopRecording = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+      setIsRecording(false)
+    }
   }
 
   return (
@@ -129,6 +171,12 @@ export default function Home() {
           ))}
         </Stack>
         <Stack direction={'row'} spacing={2}>
+          <Button
+            variant="contained"
+            onClick={isRecording ? stopRecording : startRecording}
+          >
+            {isRecording ? 'Stop Recording' : 'Record'}
+          </Button>
           <TextField
             label="Message"
             fullWidth
