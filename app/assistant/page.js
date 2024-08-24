@@ -1,8 +1,11 @@
 'use client'
-import { Box, Button, Stack, TextField, AppBar, Toolbar, Typography, Link, Modal, IconButton } from '@mui/material'
-import { useState, useRef } from 'react'
+import { Box, Button, Stack, TextField, AppBar, Toolbar, Typography, Link, Modal, IconButton, Paper, Popper, Grow, ClickAwayListener, MenuList, MenuItem } from '@mui/material'
+import { useState, useRef, useEffect } from 'react'
 import MicIcon from '@mui/icons-material/Mic';
 import StarIcon from '@mui/icons-material/Star';
+import MenuIcon from '@mui/icons-material/Menu';
+
+import { useRouter } from 'next/navigation'
 import { firestore } from "@/firebase";
 import { addDoc, collection } from "firebase/firestore";
 
@@ -118,7 +121,7 @@ export default function Home() {
 
   const handleOpen = () => setFeedbackOpen(true);
 
-  const handleClose = async () => {
+  const handleSubmit = async () => {
     // Save the rating to Firestore
     if (rating > 0) {
       try {
@@ -141,6 +144,48 @@ export default function Home() {
     setRating(value);
   };
 
+  //MenuList
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = useRef(open);
+  useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+  //Menu Navigation
+  const router = useRouter();
+
+  const handleNavigation = (path) => {
+    router.push(path);
+  };
+
   return (
     <Box
       width="100vw"
@@ -160,7 +205,49 @@ export default function Home() {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold', fontFamily: "'Lato', sans-serif" }}>
+          <MenuIcon
+            ref={anchorRef}
+            id="composition-button"
+            aria-controls={open ? 'composition-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}>
+          </MenuIcon>
+          <Popper
+            open={open}
+            anchorEl={anchorRef.current}
+            role={undefined}
+            placement="bottom-start"
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === 'bottom-start' ? 'left top' : 'left bottom',
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList
+                      autoFocusItem={open}
+                      id="composition-menu"
+                      aria-labelledby="composition-button"
+                      onKeyDown={handleListKeyDown}
+                    >
+                      <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
+                      <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
+                      <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
+                      <MenuItem onClick={() => handleNavigation('/')}>Logout</MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold', fontFamily: "'Lato', sans-serif", paddingLeft: '20px' }}>
             RateSmart
           </Typography>
           <Link href="/sign-in" passHref>
@@ -243,6 +330,15 @@ export default function Home() {
                 borderRadius={16}
                 p={3}
               >
+                {/*message.content
+                  .split(/(?=\d+\.\s)/) //Split before a number followed by a dot and space
+                  .map((line, index) => (
+                    line.trim() ? (
+                      <Typography key={index} component="div" sx={{ mb: 1 }}>
+                        {line.trim()}
+                      </Typography>
+                    ) : null
+                  ))*/}
                 {message.content}
               </Box>
             </Box>
@@ -277,7 +373,7 @@ export default function Home() {
       {/*Feedback form*/}
       <Modal
         open={feedbackOpen}
-        onClose={handleClose}
+        onClose={handleSubmit}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -295,7 +391,7 @@ export default function Home() {
                 </IconButton>
               ))}
             </Stack>
-            <Button variant="contained" onClick={() => { handleClose() }} disabled={rating === 0} sx={{ bgcolor: '#1e1e1e', '&:hover': { bgcolor: '#2d2d2d' } }}>
+            <Button variant="contained" onClick={() => { handleSubmit() }} disabled={rating === 0} sx={{ bgcolor: '#1e1e1e', '&:hover': { bgcolor: '#2d2d2d' } }}>
               Submit
             </Button>
           </Stack>

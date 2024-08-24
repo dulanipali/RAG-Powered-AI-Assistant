@@ -1,10 +1,11 @@
 'use client'
-import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, CssBaseline, Grid, Paper, Stack } from "@mui/material";
+import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, Paper, Stack } from "@mui/material";
 import Link from 'next/link';
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from '@mui/icons-material/Menu';
 import Head from 'next/head';
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation'
 
 
 export default function Dashboard() {
@@ -44,6 +45,13 @@ export default function Dashboard() {
         prevOpen.current = open;
     }, [open]);
 
+
+    //Menu Navigation
+    const router = useRouter();
+
+    const handleNavigation = (path) => {
+        router.push(path);
+    };
 
     return (
         <Box
@@ -95,18 +103,10 @@ export default function Dashboard() {
                                             aria-labelledby="composition-button"
                                             onKeyDown={handleListKeyDown}
                                         >
-                                            <Link href='/assistant'>
-                                                <MenuItem>Chat</MenuItem>
-                                            </Link>
-                                            <Link href='/dashboard' passHref>
-                                                <MenuItem>Dashboard</MenuItem>
-                                            </Link>
-                                            <Link href='saved' passHref>
-                                                <MenuItem>Saved Searches</MenuItem>
-                                            </Link>
-                                            <Link href='/' passHref>
-                                                <MenuItem>Logout</MenuItem>
-                                            </Link>
+                                            <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
+                                            <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
+                                            <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
+                                            <MenuItem onClick={() => handleNavigation('/')}>Logout</MenuItem>
                                         </MenuList>
                                     </ClickAwayListener>
                                 </Paper>
@@ -131,9 +131,14 @@ export default function Dashboard() {
             </AppBar>
             <Stack bgcolor={'#FEF7FF'} spacing={5} padding={8} alignItems={'center'}>
                 <Typography variant="h4">Hi User! Welcome to RateSmart</Typography>
-                <Typography variant="h6">What to find professors you'd like?</Typography>
+                <Typography variant="h6">Want to find professors you'd like?</Typography>
                 <Link href="/assistant" passHref>
-                    <Button variant="outlined">Chat with Assistant</Button>
+                    <Button variant="outlined" sx={{
+                        bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
+                        '&:hover': { backgroundColor: '#28031D' },
+                        transition: 'background-color 0.3s ease',
+                        fontFamily: "'Lato', sans-serif",
+                    }}>Chat with Assistant</Button>
                 </Link>
                 <Typography variant="h6">Already know who you want?</Typography>
                 **Insert Search here**

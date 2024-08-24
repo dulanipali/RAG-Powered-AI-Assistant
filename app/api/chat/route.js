@@ -6,6 +6,7 @@ const systemPrompt = `
 You are a rate my professor agent to help students find classes, that takes in user questions and answers them.
 For every user question, the top 3 professors that match the user question are returned.
 Use them to answer the question if needed.
+Make sure responses are properly formatted and easy to read.
 `
 
 //Set up the main function that will handle incoming POST requests

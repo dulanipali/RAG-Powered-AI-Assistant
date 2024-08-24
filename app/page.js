@@ -22,10 +22,12 @@ export default function Home() {
         <Container
             maxWidth={false}
             sx={{
-                minHeight: '100vh',
+                maxHeight: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: 'grey',
+                alignItems: 'center',
+                justifyContent: 'center',
+                //backgroundColor: 'grey',
                 padding: 0,
                 margin: 0,
                 overflowX: 'hidden',
@@ -44,7 +46,7 @@ export default function Home() {
                 sx={{
                     backgroundColor: '#000000',
                     boxShadow: 'none',
-                    minwidth: '100vw',
+                    minWidth: '100vw',
                 }}
             >
                 <Toolbar>
@@ -95,8 +97,10 @@ export default function Home() {
                 <Box sx={{
                     backgroundColor: '#EDCFFC',
                     width: '100vw',
+                    height: '100vh',
                     py: 8,
                     px: 4,
+                    margin: 0,
                 }}>
                     <Typography
                         variant="h3"
@@ -135,7 +139,16 @@ export default function Home() {
                         </Button>
                     </Link>
                 </Box>
-                <Box sx={{ backgroundColor: 'white', textAlign: "center", padding: "50px" }}>
+                <Box sx={{
+                    width: '100vw',
+                    minHeight: '100vh',
+                    py: 8,
+                    px: 4,
+                    backgroundColor: 'white',
+                    textAlign: "center",
+                    padding: "50px",
+                    margin: 0,
+                }}>
                     <Typography variant="h4" component="h2" align="center" gutterBottom>
                         Features
                     </Typography>
@@ -185,6 +198,8 @@ export default function Home() {
                     color: '#fff',
                     py: 2,
                     textAlign: 'center',
+                    minWidth: '100vw',
+                    margin: 0,
                 }}
             >
                 <Typography variant="body2">
