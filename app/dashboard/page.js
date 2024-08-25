@@ -1,12 +1,14 @@
-'use client'
+'use client';
 import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, Paper, Stack, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem as MuiMenuItem, FormControl, InputLabel } from "@mui/material";
-import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import reviewsData from '../../reviews.json';
+import { useClerk } from '@clerk/nextjs';
 
 export default function Dashboard() {
+    const { signOut } = useClerk();
+
     // MenuList
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -43,6 +45,15 @@ export default function Dashboard() {
 
     const handleNavigation = (path) => {
         router.push(path);
+    };
+
+    const handleLogout = async () => {
+        try {
+            await signOut(); // Log out the user with Clerk
+            router.push('/'); // Redirect to the home page after logout
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
     };
 
     // Search functionality
@@ -195,7 +206,7 @@ export default function Dashboard() {
                                             <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/recommendations')}>Recommendations</MenuItem>
-                                            <MenuItem onClick={() => handleNavigation('/')}>Logout</MenuItem>
+                                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                         </MenuList>
                                     </ClickAwayListener>
                                 </Paper>
@@ -205,30 +216,30 @@ export default function Dashboard() {
                     <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold', fontFamily: "'Lato', sans-serif", paddingLeft: '20px' }}>
                         RateSmart
                     </Typography>
-                    <Link href="/" passHref>
-                        <Button sx={{
-                            mx: 1,
-                            color: 'white',
-                            '&:hover': { backgroundColor: '#28231D' },
-                            transition: 'background-color 0.3s ease',
-                            borderRadius: '20px',
-                        }}>
-                            Sign Out
-                        </Button>
-                    </Link>
+                    <Button sx={{
+                        mx: 1,
+                        color: 'white',
+                        '&:hover': { backgroundColor: '#28231D' },
+                        transition: 'background-color 0.3s ease',
+                        borderRadius: '20px',
+                    }}
+                    onClick={handleLogout}>
+                        Sign Out
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Stack bgcolor={'#FEF7FF'} spacing={5} padding={8} alignItems={'center'}>
                 <Typography variant="h4">Hi User! Welcome to RateSmart</Typography>
                 <Typography variant="h6">Want to find professors you'd like?</Typography>
-                <Link href="/assistant" passHref>
-                    <Button variant="outlined" sx={{
-                        bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
-                        '&:hover': { backgroundColor: '#28031D' },
-                        transition: 'background-color 0.3s ease',
-                        fontFamily: "'Lato', sans-serif",
-                    }}>Chat with Assistant</Button>
-                </Link>
+                <Button variant="outlined" sx={{
+                    bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
+                    '&:hover': { backgroundColor: '#28031D' },
+                    transition: 'background-color 0.3s ease',
+                    fontFamily: "'Lato', sans-serif",
+                }}
+                onClick={() => handleNavigation('/assistant')}>
+                    Chat with Assistant
+                </Button>
                 <Typography variant="h6">Already know who you want?</Typography>
 
                 {/* Inserted Search Bar */}
@@ -376,14 +387,15 @@ export default function Dashboard() {
                 </Dialog>
 
                 <Typography variant="h6">Need Recommendations?</Typography>
-                <Link href="/recommendations" passHref>
-                    <Button variant="outlined" sx={{
-                        bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
-                        '&:hover': { backgroundColor: '#28031D' },
-                        transition: 'background-color 0.3s ease',
-                        fontFamily: "'Lato', sans-serif",
-                    }}>View Recommendations</Button>
-                </Link>
+                <Button variant="outlined" sx={{
+                    bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
+                    '&:hover': { backgroundColor: '#28031D' },
+                    transition: 'background-color 0.3s ease',
+                    fontFamily: "'Lato', sans-serif",
+                }}
+                onClick={() => handleNavigation('/recommendations')}>
+                    View Recommendations
+                </Button>
             </Stack>
         </Box>
     )
