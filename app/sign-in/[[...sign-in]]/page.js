@@ -10,7 +10,7 @@ export default function SignInPage() {
             disableGutters
             sx={{
                 minHeight: '100vh',
-                backgroundColor: '#E3F2FD',
+                backgroundColor: '#EDCFFC',
                 padding: 0,
                 margin: 0,
                 display: 'flex',
@@ -21,7 +21,7 @@ export default function SignInPage() {
         >
             <CssBaseline />
 
-            <AppBar position="static" sx={{ backgroundColor: '#3F51B5', boxShadow: 'none', width: '100%' }}>
+            <AppBar position="static" sx={{ backgroundColor: '#000000', boxShadow: 'none', width: '100%' }}>
                 <Toolbar>
                     <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Roboto, sans-serif' }}>
                         RateSmart
@@ -31,8 +31,8 @@ export default function SignInPage() {
                             color="inherit"
                             sx={{
                                 mx: 1,
-                                backgroundColor: '#42A5F5',  // Secondary Color
-                                '&:hover': { backgroundColor: '#1E88E5' },
+                                color: 'white',
+                                '&:hover': { backgroundColor: '#28231D' },
                                 transition: 'background-color 0.3s ease',
                                 borderRadius: '20px',
                                 fontFamily: "'Lato', sans-serif",
@@ -51,7 +51,7 @@ export default function SignInPage() {
                 alignItems="center"
                 sx={{ mt: 8, flexGrow: 1, width: '100%' }}
             >
-                <Typography variant="h4" sx={{ color: '#3F51B5', mb: 4, fontFamily: "'Lato', sans-serif" }}>
+                <Typography variant="h4" sx={{ color: '#000000', mb: 4, fontFamily: "'Lato', sans-serif" }}>
                     Sign In
                 </Typography>
                 <Box

@@ -37,7 +37,6 @@ export default function Home() {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                //backgroundColor: 'grey',
                 padding: 0,
                 margin: 0,
                 overflowX: 'hidden',
