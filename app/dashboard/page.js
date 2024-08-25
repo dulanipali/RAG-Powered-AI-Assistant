@@ -1,14 +1,13 @@
 'use client'
-import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, Paper, Stack, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, Paper, Stack, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem as MuiMenuItem, FormControl, InputLabel } from "@mui/material";
 import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation'
-import reviewsData from '../../reviews.json'; // Ensure the path is correct
+import { useRouter } from 'next/navigation';
+import reviewsData from '../../reviews.json'; 
 
 export default function Dashboard() {
-
-    //MenuList
+    // MenuList
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -32,7 +31,6 @@ export default function Dashboard() {
         }
     }
 
-    // return focus to the button when we transitioned from !open -> open
     const prevOpen = useRef(open);
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
@@ -41,7 +39,6 @@ export default function Dashboard() {
         prevOpen.current = open;
     }, [open]);
 
-    //Menu Navigation
     const router = useRouter();
 
     const handleNavigation = (path) => {
@@ -52,6 +49,17 @@ export default function Dashboard() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
+    const [advancedSearchOpen, setAdvancedSearchOpen] = useState(false);
+
+    // Advanced Search functionality
+    const [professorName, setProfessorName] = useState('');
+    const [subject, setSubject] = useState('');
+    const [rating, setRating] = useState('');
+
+    // Extract unique professor names, subjects, and ratings from reviews data
+    const professorNames = Array.from(new Set(reviewsData.reviews.map(review => review.professor)));
+    const subjects = Array.from(new Set(reviewsData.reviews.map(review => review.subject)));
+    const ratings = Array.from(new Set(reviewsData.reviews.map(review => review.stars.toString())));
 
     // Store the saved searches
     const [savedSearches, setSavedSearches] = useState([]);
@@ -83,10 +91,42 @@ export default function Dashboard() {
         }
     };
 
+    const handleAdvancedSearch = () => {
+        try {
+            const lowerCaseProfessorName = professorName.toLowerCase();
+            const lowerCaseSubject = subject.toLowerCase();
+            const results = reviewsData.reviews.filter(review =>
+                review.professor.toLowerCase().includes(lowerCaseProfessorName) &&
+                review.subject.toLowerCase().includes(lowerCaseSubject) &&
+                (rating === '' || review.stars === parseInt(rating))
+            );
+            setSearchResults(results);
+            if (results.length === 0) {
+                setError('No matching professors found.');
+            } else {
+                setError(null);
+                // Save the search term if results are found
+                const searchQuery = `${professorName} ${subject} ${rating}`.trim();
+                const updatedSearches = [...savedSearches, searchQuery];
+                setSavedSearches(updatedSearches);
+                localStorage.setItem('savedSearches', JSON.stringify(updatedSearches));
+            }
+        } catch (err) {
+            setError('An error occurred while searching.');
+        }
+    };
+
     const handleClear = () => {
         setSearchTerm('');
         setSearchResults([]);
         setError(null);
+        setProfessorName('');
+        setSubject('');
+        setRating('');
+    };
+
+    const toggleAdvancedSearch = () => {
+        setAdvancedSearchOpen(prev => !prev);
     };
 
     // Modal logic
@@ -107,8 +147,8 @@ export default function Dashboard() {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            justifyContent="center"  // Ensure all content is centered
-            bgcolor="#FEF7FF"         // Set consistent background color
+            justifyContent="center"
+            bgcolor="#FEF7FF"
         >
             <AppBar
                 position="static"
@@ -212,12 +252,66 @@ export default function Dashboard() {
 
                     <Button
                         variant="outlined"
+                        onClick={toggleAdvancedSearch}
+                        sx={{ bgcolor: '#ffffff', color: '#65558F', '&:hover': { bgcolor: '#f0f0f0' } }}
+                    >
+                        Advanced Search
+                    </Button>
+
+                    <Button
+                        variant="outlined"
                         onClick={handleClear}
                         sx={{ bgcolor: '#ffffff', color: '#65558F', '&:hover': { bgcolor: '#f0f0f0' } }}
                     >
                         Clear
                     </Button>
                 </Stack>
+
+                {/* Advanced Search Fields */}
+                {advancedSearchOpen && (
+                    <Stack spacing={2} marginBottom="20px" width="100%" maxWidth="500px">
+                        <FormControl fullWidth>
+                            <InputLabel>Professor Name</InputLabel>
+                            <Select
+                                value={professorName}
+                                onChange={(e) => setProfessorName(e.target.value)}
+                            >
+                                {professorNames.map((name, index) => (
+                                    <MuiMenuItem key={index} value={name}>{name}</MuiMenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel>Subject</InputLabel>
+                            <Select
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
+                            >
+                                {subjects.map((subj, index) => (
+                                    <MuiMenuItem key={index} value={subj}>{subj}</MuiMenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel>Rating</InputLabel>
+                            <Select
+                                value={rating}
+                                onChange={(e) => setRating(e.target.value)}
+                            >
+                                {ratings.map((rate, index) => (
+                                    <MuiMenuItem key={index} value={rate}>{rate}</MuiMenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <Button
+                            variant="contained"
+                            onClick={handleAdvancedSearch}
+                            sx={{ bgcolor: '#65558F', '&:hover': { bgcolor: '#53396D' } }}
+                        >
+                            Search
+                        </Button>
+                    </Stack>
+                )}
 
                 {error ? (
                     <Typography color="error">{error}</Typography>
