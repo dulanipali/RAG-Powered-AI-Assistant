@@ -4,7 +4,7 @@ import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import reviewsData from '../../reviews.json'; 
+import reviewsData from '../../reviews.json';
 
 export default function Dashboard() {
     // MenuList
@@ -143,7 +143,7 @@ export default function Dashboard() {
     return (
         <Box
             width="100vw"
-            height="100vh"
+            minHeight="100vh"
             display="flex"
             flexDirection="column"
             alignItems="center"

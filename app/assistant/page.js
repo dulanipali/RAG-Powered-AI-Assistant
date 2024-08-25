@@ -23,40 +23,40 @@ export default function Home() {
   const recognitionRef = useRef(null)
 
   // Function to dynamically extract keywords from user input
-const extractKeywords = (message) => {
-  const stopWords = [
-    'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your',
-    'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she',
-    'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their',
-    'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that',
-    'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
-    'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an',
-    'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of',
-    'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through',
-    'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down',
-    'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then',
-    'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any',
-    'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor',
-    'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can',
-    'will', 'just', 'don', 'should', 'now'
-  ];
+  const extractKeywords = (message) => {
+    const stopWords = [
+      'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your',
+      'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she',
+      'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their',
+      'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that',
+      'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+      'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an',
+      'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of',
+      'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through',
+      'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down',
+      'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then',
+      'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any',
+      'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor',
+      'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can',
+      'will', 'just', 'don', 'should', 'now'
+    ];
 
-  const words = message.split(' ');
-  const keywords = words.filter(word => !stopWords.includes(word.toLowerCase()));
-  
-  return keywords;
-};
+    const words = message.split(' ');
+    const keywords = words.filter(word => !stopWords.includes(word.toLowerCase()));
 
-const saveKeyword = (message) => {
-  const keywords = extractKeywords(message);
-  let storedKeywords = JSON.parse(sessionStorage.getItem('preferenceKeywords')) || [];
-  keywords.forEach((keyword) => {
-    if (!storedKeywords.includes(keyword)) {
-      storedKeywords.push(keyword.toLowerCase());
-    }
-  });
-  sessionStorage.setItem('preferenceKeywords', JSON.stringify(storedKeywords));
-};
+    return keywords;
+  };
+
+  const saveKeyword = (message) => {
+    const keywords = extractKeywords(message);
+    let storedKeywords = JSON.parse(sessionStorage.getItem('preferenceKeywords')) || [];
+    keywords.forEach((keyword) => {
+      if (!storedKeywords.includes(keyword)) {
+        storedKeywords.push(keyword.toLowerCase());
+      }
+    });
+    sessionStorage.setItem('preferenceKeywords', JSON.stringify(storedKeywords));
+  };
 
   //Handle sending messages
   const sendMessage = async () => {
@@ -381,7 +381,7 @@ const saveKeyword = (message) => {
             </Box>
           ))}
         </Stack>
-        <Stack direction={'row'} spacing={2}>
+        <Stack direction={'row'} spacing={2} alignItems="center">
           <MicIcon
             fontSize="large"
             //variant="contained"
