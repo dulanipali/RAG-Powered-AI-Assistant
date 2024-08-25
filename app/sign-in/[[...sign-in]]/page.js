@@ -3,7 +3,6 @@ import { AppBar, Typography, Container, Button, Toolbar, Box, CssBaseline } from
 import Link from 'next/link';
 import { SignIn } from '@clerk/nextjs';
 
-
 export default function SignInPage() {
     return (
         <Container
@@ -27,7 +26,7 @@ export default function SignInPage() {
                     <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Roboto, sans-serif' }}>
                         RateSmart
                     </Typography>
-                    <Link href="/plan_selection" passHref>
+                    <Link href="/sign-up" passHref> {/* Updated route to /sign-up */}
                         <Button
                             color="inherit"
                             sx={{

@@ -1,11 +1,14 @@
-'use client'
+'use client';
 import { AppBar, Container, Toolbar, Typography, Button, Box, CssBaseline, Grid, Paper } from "@mui/material";
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
-
+import { useAuth } from '@clerk/nextjs'; // Import Clerk's useAuth hook
+import { useRouter } from 'next/navigation'; // Import useRouter to programmatically navigate
 
 export default function Home() {
+    const { isSignedIn } = useAuth(); // Check if the user is signed in
+    const router = useRouter(); // Use router for programmatic navigation
 
     const style = {
         p: 3,
@@ -17,6 +20,13 @@ export default function Home() {
         borderRadius: '15px',
     }
 
+    const handleGetStarted = () => {
+        if (isSignedIn) {
+            router.push('/assistant'); // If user is signed in, navigate to assistant page
+        } else {
+            router.push('/sign-in'); // If user is not signed in, navigate to sign-in page
+        }
+    }
 
     return (
         <Container
@@ -122,22 +132,21 @@ export default function Home() {
                     >
                         Your Personal Guide to Finding the Best Professors and Courses
                     </Typography>
-                    <Link href="/assistant" passHref>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: '#000000',
-                                '&:hover': { backgroundColor: '#000055' },
-                                fontSize: '1.2rem',
-                                px: 4,
-                                py: 1,
-                                borderRadius: '20px',
-                                fontFamily: "'Lato', sans-serif",
-                            }}
-                        >
-                            Get Started
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: '#000000',
+                            '&:hover': { backgroundColor: '#000055' },
+                            fontSize: '1.2rem',
+                            px: 4,
+                            py: 1,
+                            borderRadius: '20px',
+                            fontFamily: "'Lato', sans-serif",
+                        }}
+                        onClick={handleGetStarted}
+                    >
+                        Get Started
+                    </Button>
                 </Box>
                 <Box sx={{
                     width: '100vw',
@@ -187,9 +196,6 @@ export default function Home() {
                             </Paper>
                         </Grid>
                     </Grid>
-
-
-
                 </Box>
             </Box>
             <Box
@@ -203,7 +209,7 @@ export default function Home() {
                 }}
             >
                 <Typography variant="body2">
-                    Â© 2024 RateSmart. All rights reserved.
+                    © 2024 RateSmart. All rights reserved.
                 </Typography>
             </Box>
         </Container>
