@@ -1,5 +1,5 @@
 'use client'
-import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, Paper, Stack, TextField } from "@mui/material";
+import { AppBar, Popper, Grow, ClickAwayListener, MenuList, MenuItem, Toolbar, Typography, Button, Box, Paper, Stack, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect, useRef } from 'react';
@@ -38,7 +38,6 @@ export default function Dashboard() {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }
-
         prevOpen.current = open;
     }, [open]);
 
@@ -54,6 +53,14 @@ export default function Dashboard() {
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
 
+    // Store the saved searches
+    const [savedSearches, setSavedSearches] = useState([]);
+
+    useEffect(() => {
+        const storedSearches = JSON.parse(localStorage.getItem('savedSearches')) || [];
+        setSavedSearches(storedSearches);
+    }, []);
+
     const handleSearch = () => {
         try {
             const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -65,6 +72,11 @@ export default function Dashboard() {
                 setError('No matching professors found.');
             } else {
                 setError(null);
+
+                // Save the search term if results are found
+                const updatedSearches = [...savedSearches, searchTerm];
+                setSavedSearches(updatedSearches);
+                localStorage.setItem('savedSearches', JSON.stringify(updatedSearches));
             }
         } catch (err) {
             setError('An error occurred while searching.');
@@ -75,6 +87,17 @@ export default function Dashboard() {
         setSearchTerm('');
         setSearchResults([]);
         setError(null);
+    };
+
+    // Modal logic
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleModalOpen = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setModalOpen(false);
     };
 
     return (
@@ -228,6 +251,35 @@ export default function Dashboard() {
                 )}
 
                 <Typography variant="h6">View Saved Searches/Professors</Typography>
+                <Button variant="outlined" onClick={handleModalOpen} sx={{
+                    bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
+                    '&:hover': { backgroundColor: '#28031D' },
+                    transition: 'background-color 0.3s ease',
+                    fontFamily: "'Lato', sans-serif",
+                }}>
+                    View List
+                </Button>
+
+                {/* Modal to display saved searches */}
+                <Dialog open={modalOpen} onClose={handleModalClose}>
+                    <DialogTitle>Saved Searches/Professors</DialogTitle>
+                    <DialogContent>
+                        {savedSearches.length > 0 ? (
+                            <ul>
+                                {savedSearches.map((search, index) => (
+                                    <li key={index}>{search}</li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <Typography>No saved searches/professors found.</Typography>
+                        )}
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleModalClose} color="primary">
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
 
                 <Typography variant="h6">Need Recommendations?</Typography>
                 <Link href="/recommendations" passHref>
