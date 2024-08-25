@@ -287,7 +287,6 @@ export default function Home() {
                       >
                         <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
                         <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
-                        <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
                         <MenuItem onClick={() => handleNavigation('/recommendations')}>Recommendations</MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </MenuList>

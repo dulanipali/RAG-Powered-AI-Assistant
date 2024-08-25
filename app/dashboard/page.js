@@ -199,7 +199,6 @@ export default function Dashboard() {
                                         >
                                             <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
-                                            <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/recommendations')}>Recommendations</MenuItem>
                                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                         </MenuList>
@@ -361,7 +360,7 @@ export default function Dashboard() {
                 {/* Side Section */}
                 <Grid item xs={12} md={4}>
                     <Box padding={3} bgcolor="white" borderRadius="12px" boxShadow="0px 4px 20px rgba(0, 0, 0, 0.1)">
-                        <Typography variant="h6" sx={{ fontFamily: "'Lato', sans-serif" }}>View Saved Searches/Professors</Typography>
+                        <Typography variant="h6" sx={{ fontFamily: "'Lato', sans-serif" }}>View Search History</Typography>
                         <Button variant="outlined" onClick={handleModalOpen} sx={{
                             bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
                             '&:hover': { backgroundColor: '#28031D' },
