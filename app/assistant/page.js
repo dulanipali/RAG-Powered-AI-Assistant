@@ -6,10 +6,23 @@ import StarIcon from '@mui/icons-material/Star';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@clerk/nextjs';
 import { firestore } from "@/firebase";
 import { addDoc, collection } from "firebase/firestore";
 
 export default function Home() {
+
+  const { isSignedIn } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(); // Log out the user with Clerk
+      router.push('/'); // Redirect to the home page after logout
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
 
   //State for managing messages and user input
   const [messages, setMessages] = useState([
@@ -242,15 +255,14 @@ export default function Home() {
         }}
       >
         <Toolbar>
-          <MenuIcon
+          {(isSignedIn) ? <><MenuIcon
             ref={anchorRef}
             id="composition-button"
             aria-controls={open ? 'composition-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-haspopup="true"
             onClick={handleToggle}>
-          </MenuIcon>
-          <Popper
+          </MenuIcon><Popper
             open={open}
             anchorEl={anchorRef.current}
             role={undefined}
@@ -258,32 +270,32 @@ export default function Home() {
             transition
             disablePortal
           >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === 'bottom-start' ? 'left top' : 'left bottom',
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList
-                      autoFocusItem={open}
-                      id="composition-menu"
-                      aria-labelledby="composition-button"
-                      onKeyDown={handleListKeyDown}
-                    >
-                      <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
-                      <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
-                      <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
-                      <MenuItem onClick={() => handleNavigation('/')}>Logout</MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="composition-menu"
+                        aria-labelledby="composition-button"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
+                        <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
+                        <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
+                        <MenuItem onClick={() => handleNavigation('/recommendations')}>Recommendations</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper></> : null}
           <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold', fontFamily: "'Lato', sans-serif", paddingLeft: '20px' }}>
             RateSmart
           </Typography>

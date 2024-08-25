@@ -224,14 +224,14 @@ export default function Dashboard() {
                         transition: 'background-color 0.3s ease',
                         borderRadius: '20px',
                     }}
-                    onClick={handleLogout}>
+                        onClick={handleLogout}>
                         Sign Out
                     </Button>
                 </Toolbar>
             </AppBar>
             <Stack bgcolor={'#FEF7FF'} spacing={5} padding={8} alignItems={'center'}>
-                <Typography 
-                    variant="h4" 
+                <Typography
+                    variant="h4"
                     sx={{
                         background: 'linear-gradient(to right, #6a11cb, #2575fc)', // Gradient background
                         WebkitBackgroundClip: 'text', // Makes the gradient apply to the text
@@ -253,7 +253,7 @@ export default function Dashboard() {
                     transition: 'background-color 0.3s ease',
                     fontFamily: "'Lato', sans-serif",
                 }}
-                onClick={() => handleNavigation('/assistant')}>
+                    onClick={() => handleNavigation('/assistant')}>
                     Chat with Assistant
                 </Button>
                 <Typography variant="h6">Already know who you want?</Typography>
@@ -409,7 +409,7 @@ export default function Dashboard() {
                     transition: 'background-color 0.3s ease',
                     fontFamily: "'Lato', sans-serif",
                 }}
-                onClick={() => handleNavigation('/recommendations')}>
+                    onClick={() => handleNavigation('/recommendations')}>
                     View Recommendations
                 </Button>
             </Stack>
