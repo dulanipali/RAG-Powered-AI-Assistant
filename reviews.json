@@ -4,121 +4,283 @@
             "professor": "Dr. Alice Johnson",
             "subject": "Computer Science",
             "stars": 4,
-            "review": "Great at explaining complex concepts, but her exams are tough."
+            "review": "Explains tricky stuff well, but her exams are really hard."
         },
         {
             "professor": "Dr. Mark Evans",
             "subject": "Mathematics",
             "stars": 5,
-            "review": "Very engaging lectures and always willing to help during office hours."
+            "review": "Super engaging lectures and very helpful during office hours."
         },
         {
             "professor": "Dr. Lisa Wong",
             "subject": "Physics",
             "stars": 3,
-            "review": "Interesting lectures but sometimes hard to follow."
+            "review": "Lectures are interesting, but can be hard to keep up."
         },
         {
             "professor": "Dr. Kevin Patel",
             "subject": "Chemistry",
             "stars": 4,
-            "review": "He knows his stuff but expects students to be self-driven."
+            "review": "Knows his stuff, but you need to be independent."
         },
         {
             "professor": "Dr. Susan Brown",
             "subject": "Biology",
             "stars": 5,
-            "review": "Passionate about the subject, makes learning fun and interactive."
+            "review": "Very passionate, makes learning fun."
         },
         {
             "professor": "Dr. Robert Adams",
             "subject": "History",
             "stars": 3,
-            "review": "A bit dry at times, but knowledgeable and fair in grading."
+            "review": "A bit dry sometimes, but fair grading."
         },
         {
             "professor": "Dr. Emily Taylor",
             "subject": "Economics",
             "stars": 4,
-            "review": "Clear and concise teaching, but the material is challenging."
+            "review": "Teaches clearly, but the material is tough."
         },
         {
             "professor": "Dr. James Green",
             "subject": "Political Science",
             "stars": 5,
-            "review": "Engaging lectures and open to diverse viewpoints."
+            "review": "Engaging and open to different viewpoints."
         },
         {
             "professor": "Dr. Nancy White",
             "subject": "Psychology",
             "stars": 4,
-            "review": "Really cares about students, though her grading is strict."
+            "review": "Really cares about students, but grades strictly."
         },
         {
             "professor": "Dr. Michael Clark",
             "subject": "Sociology",
             "stars": 2,
-            "review": "Lectures can be monotonous, and the assignments are tedious."
+            "review": "Lectures are boring and assignments are a drag."
         },
         {
             "professor": "Dr. Karen Scott",
             "subject": "Philosophy",
             "stars": 5,
-            "review": "Brilliant and thought-provoking. Makes you think deeply about life."
+            "review": "Thought-provoking and makes you really think."
         },
         {
             "professor": "Dr. Richard Lewis",
             "subject": "Anthropology",
             "stars": 3,
-            "review": "Content is interesting, but the exams are very difficult."
+            "review": "Interesting content, but exams are tough."
         },
         {
             "professor": "Dr. Patricia Martin",
             "subject": "English Literature",
             "stars": 4,
-            "review": "Encourages creativity and critical thinking, but readings are heavy."
+            "review": "Encourages creativity, but there’s a lot of reading."
         },
         {
             "professor": "Dr. William Harris",
             "subject": "Statistics",
             "stars": 3,
-            "review": "Explains well, but you need to put in extra effort to succeed."
+            "review": "Explains well, but you need to work hard."
         },
         {
             "professor": "Dr. Linda King",
             "subject": "Environmental Science",
             "stars": 5,
-            "review": "Passionate about the environment and makes the subject come alive."
+            "review": "Super passionate about the environment, makes it interesting."
         },
         {
             "professor": "Dr. George Robinson",
             "subject": "Art History",
             "stars": 4,
-            "review": "Very knowledgeable but sometimes gets sidetracked in lectures."
+            "review": "Knows a lot, but sometimes goes off on tangents."
         },
         {
             "professor": "Dr. Jessica Hill",
             "subject": "Linguistics",
             "stars": 4,
-            "review": "Really knows her field, but expects a lot from students."
+            "review": "Very knowledgeable, but expects a lot from students."
         },
         {
             "professor": "Dr. Daniel Carter",
             "subject": "Geography",
             "stars": 2,
-            "review": "Not very engaging, and the material can be dry."
+            "review": "Not engaging, and the material is dry."
         },
         {
             "professor": "Dr. Amanda Parker",
             "subject": "Philosophy",
             "stars": 5,
-            "review": "Inspires deep thinking and is very approachable."
+            "review": "Makes you think deeply and is really approachable."
         },
         {
             "professor": "Dr. Charles Thompson",
             "subject": "Computer Engineering",
             "stars": 4,
-            "review": "Good balance of theory and practical work, but assignments are tough."
+            "review": "Good balance of theory and practice, but assignments are tough."
+        },
+        {
+            "professor": "Dr. Laura Smith",
+            "subject": "Mechanical Engineering",
+            "stars": 5,
+            "review": "Very knowledgeable and always willing to help."
+        },
+        {
+            "professor": "Dr. Paul Johnson",
+            "subject": "Civil Engineering",
+            "stars": 3,
+            "review": "Lectures are okay, but exams are really hard."
+        },
+        {
+            "professor": "Dr. Jennifer Taylor",
+            "subject": "Psychiatry",
+            "stars": 4,
+            "review": "Supportive and caring, but demands a lot."
+        },
+        {
+            "professor": "Dr. Henry Walker",
+            "subject": "Mathematics",
+            "stars": 5,
+            "review": "Amazing at making complex topics simple."
+        },
+        {
+            "professor": "Dr. Sarah Wilson",
+            "subject": "Sociology",
+            "stars": 2,
+            "review": "Has a hard time keeping the class engaged."
+        },
+        {
+            "professor": "Dr. Rachel Adams",
+            "subject": "Business Management",
+            "stars": 4,
+            "review": "Practical and fast-paced, but really good."
+        },
+        {
+            "professor": "Dr. Charles Davis",
+            "subject": "Philosophy",
+            "stars": 5,
+            "review": "Makes you question everything you thought you knew."
+        },
+        {
+            "professor": "Dr. Elizabeth Brown",
+            "subject": "Biochemistry",
+            "stars": 4,
+            "review": "Challenging but well-organized."
+        },
+        {
+            "professor": "Dr. Michael Jones",
+            "subject": "Physics",
+            "stars": 3,
+            "review": "Cool topics, but sometimes hard to follow."
+        },
+        {
+            "professor": "Dr. Samuel Edwards",
+            "subject": "Chemistry",
+            "stars": 4,
+            "review": "Lab sessions are great, but theory is tough."
+        },
+        {
+            "professor": "Dr. Anna Clark",
+            "subject": "English Literature",
+            "stars": 5,
+            "review": "Passionate about literature and really brings it to life."
+        },
+        {
+            "professor": "Dr. Thomas White",
+            "subject": "Political Science",
+            "stars": 3,
+            "review": "Good lectures, but super strict on deadlines."
+        },
+        {
+            "professor": "Dr. Claire Bennett",
+            "subject": "Nursing",
+            "stars": 5,
+            "review": "Very compassionate and really knows her stuff."
+        },
+        {
+            "professor": "Dr. Andrew Mitchell",
+            "subject": "Computer Science",
+            "stars": 4,
+            "review": "Great at coding, but sometimes hard to keep up."
+        },
+        {
+            "professor": "Dr. Rebecca Turner",
+            "subject": "History",
+            "stars": 3,
+            "review": "Knows her history, but the lectures are a bit boring."
+        },
+        {
+            "professor": "Dr. Oliver Stone",
+            "subject": "Economics",
+            "stars": 5,
+            "review": "Makes economics actually interesting!"
+        },
+        {
+            "professor": "Dr. Victoria Lee",
+            "subject": "Political Science",
+            "stars": 4,
+            "review": "Lectures are solid, but the exams are tricky."
+        },
+        {
+            "professor": "Dr. Emma Fisher",
+            "subject": "Chemistry",
+            "stars": 3,
+            "review": "The lab work is fun, but lectures can be confusing."
+        },
+        {
+            "professor": "Dr. Jack Murray",
+            "subject": "Mathematics",
+            "stars": 4,
+            "review": "Explains things well, but moves quickly."
+        },
+        {
+            "professor": "Dr. Sophia Carter",
+            "subject": "Biology",
+            "stars": 5,
+            "review": "Very enthusiastic and makes the subject exciting."
+        },
+        {
+            "professor": "Dr. Daniel Reed",
+            "subject": "Philosophy",
+            "stars": 5,
+            "review": "Really challenges you to think outside the box."
+        },
+        {
+            "professor": "Dr. Julia Baker",
+            "subject": "Environmental Science",
+            "stars": 4,
+            "review": "Really cares about the environment, but the material can be heavy."
+        },
+        {
+            "professor": "Dr. Liam Turner",
+            "subject": "Physics",
+            "stars": 3,
+            "review": "The lectures are okay, but sometimes hard to stay awake."
+        },
+        {
+            "professor": "Dr. Zoe Mitchell",
+            "subject": "Statistics",
+            "stars": 4,
+            "review": "Good at explaining, but you need to stay on top of the work."
+        },
+        {
+            "professor": "Dr. Ethan Roberts",
+            "subject": "Chemistry",
+            "stars": 3,
+            "review": "Labs are cool, but the lectures can be boring."
+        },
+        {
+            "professor": "Dr. Mia Hughes",
+            "subject": "Psychology",
+            "stars": 5,
+            "review": "Super understanding and makes the material relatable."
+        },
+        {
+            "professor": "Dr. Ryan Clark",
+            "subject": "History",
+            "stars": 4,
+            "review": "Very knowledgeable, but can go off-topic sometimes."
         }
     ]
 }

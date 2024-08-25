@@ -7,7 +7,6 @@ import Head from 'next/head';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
 
-
 export default function Dashboard() {
 
     //MenuList
@@ -44,7 +43,6 @@ export default function Dashboard() {
 
         prevOpen.current = open;
     }, [open]);
-
 
     //Menu Navigation
     const router = useRouter();
@@ -106,6 +104,7 @@ export default function Dashboard() {
                                             <MenuItem onClick={() => handleNavigation('/assistant')}>Chat</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/dashboard')}>Dashboard</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/saved')}>Saved Searches</MenuItem>
+                                            <MenuItem onClick={() => handleNavigation('/recommendations')}>Recommendations</MenuItem>
                                             <MenuItem onClick={() => handleNavigation('/')}>Logout</MenuItem>
                                         </MenuList>
                                     </ClickAwayListener>
@@ -143,6 +142,17 @@ export default function Dashboard() {
                 <Typography variant="h6">Already know who you want?</Typography>
                 **Insert Search here**
                 <Typography variant="h6">View Saved Searches/Professors</Typography>
+                
+                {/* Added Recommendations Button */}
+                <Typography variant="h6">Need Recommendations?</Typography>
+                <Link href="/recommendations" passHref>
+                    <Button variant="outlined" sx={{
+                        bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
+                        '&:hover': { backgroundColor: '#28031D' },
+                        transition: 'background-color 0.3s ease',
+                        fontFamily: "'Lato', sans-serif",
+                    }}>View Recommendations</Button>
+                </Link>
             </Stack>
         </Box>
     )
