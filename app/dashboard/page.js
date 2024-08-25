@@ -4,10 +4,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import reviewsData from '../../reviews.json';
-import { useClerk } from '@clerk/nextjs';
+import { useClerk, useUser } from '@clerk/nextjs'; // Import useUser hook
 
 export default function Dashboard() {
     const { signOut } = useClerk();
+    const { user } = useUser(); // Get the current user
 
     // MenuList
     const [open, setOpen] = useState(false);
@@ -229,7 +230,22 @@ export default function Dashboard() {
                 </Toolbar>
             </AppBar>
             <Stack bgcolor={'#FEF7FF'} spacing={5} padding={8} alignItems={'center'}>
-                <Typography variant="h4">Hi User! Welcome to RateSmart</Typography>
+                <Typography 
+                    variant="h4" 
+                    sx={{
+                        background: 'linear-gradient(to right, #6a11cb, #2575fc)', // Gradient background
+                        WebkitBackgroundClip: 'text', // Makes the gradient apply to the text
+                        WebkitTextFillColor: 'transparent', // Makes the text transparent to show the gradient
+                        fontWeight: 'bold',
+                        fontFamily: "'Lato', sans-serif",
+                        textAlign: 'center',
+                        padding: '10px 20px',
+                        borderRadius: '10px',
+                        marginBottom: '20px',
+                    }}
+                >
+                    Hi {user?.firstName || 'User'}! Welcome to RateSmart
+                </Typography>
                 <Typography variant="h6">Want to find professors you'd like?</Typography>
                 <Button variant="outlined" sx={{
                     bgcolor: "#65558F", color: 'white', borderRadius: '20px', borderColor: '#65558F',
